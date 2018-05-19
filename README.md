@@ -60,3 +60,31 @@ function createScene() {
 	window.addEventListener('resize', handleWindowResize, false);
 }
 ```
+```javascript
+//Game2 Collision(using vector3 for detecting)
+function collision(){
+	var oneTrash;
+	var trashPos = new THREE.Vector3();
+	var heroPos = submarine.mesh.position.clone();
+	var score = $("#id").text();
+	var score_int = parseInt(score);
+
+	for (var i=0; i<this.collidableMeshList.length; i++){
+		oneTrash = collidableMeshList[i];
+		trashPos.setFromMatrixPosition( oneTrash.matrixWorld );
+
+		if(trashPos.x>0 && trashPos.x<200 && trashPos.y>0){
+			var xPoint = trashPos.x;
+			var yPoint = trashPos.y - heroPos.y;
+
+			if(xPoint > -30 && xPoint < 30 && yPoint <= 25 && yPoint >= -25){
+				//console.log(score);
+				collidableMeshList[i].scale.set(0,0,0);
+				collidableMeshList.splice(i, 1);
+				score_int = score_int + 5;
+				$("#id").text(score_int);
+			}
+		}
+	}
+}
+```
