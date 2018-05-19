@@ -8,36 +8,55 @@ This project is using Highcharts for showing recycling data, and we created some
 ## How it works?
 #### examples:
 ```javascript
-//Using Openweathermap API to get real-time weather data
-function GetCityWeather_F(city) {
-
-    $.ajax({
-        url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial' + '&appid=yourID',
-        type: "GET",
-        dataType: "jsonp",
-        success: function(data){
-            //paste data to html elements
-        },
-        error:function(){
-
-        }
-    });
-}
+//Draggable
+$("#id").draggable();
+//Droppable
+$("#id").droppable({
+    accept: "#id",
+    tolerance:"touch",
+    drop: function(event, ui) {
+        $(this).attr("src","img/name.png");
+        $("#id").css("visibility","hidden");
+        drop2 = true;
+    }
+});
 ```
 ```javascript
-//Using Flickr API to get city photos
-function GetCityPhoto(city) {
+//Three.js basic scene
+function createScene() {	
+	HEIGHT = window.innerHeight;
+	WIDTH = window.innerWidth;
+	scene = new THREE.Scene;
 
-    $.ajax({
-        url: 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=yourAPIKey&tags=skyline'+'&text='+city+
-        '&safe_search=1&privacy_filter=1&content_type=1&per_page=5&format=json&nojsoncallback=1',
-        format: "json",
-        success: function(data) {
-            //paste data to html elements            
-        },
-        error:function() {
+	scene.fog = new THREE.Fog(0xf7d9aa, 100, 950);
+	
+	aspectRatio = WIDTH / HEIGHT;
+	fieldOfView = 60;
+	nearObject = 1;
+	farObject = 10000;
+	camera = new THREE.PerspectiveCamera(
+		fieldOfView,
+		aspectRatio,
+		nearObject,
+		farObject
+		);
+	
+	camera.position.x = -50;
+	camera.position.z = 180;
+	camera.position.y = 100;
+	camera.rotation.y = 50;
 
-        },
-    });
+	renderer = new THREE.WebGLRenderer({ 
+		alpha: true, 
+		antialias: true 
+	});
+
+	renderer.setSize(WIDTH, HEIGHT);	
+	renderer.shadowMap.enabled = true;
+	
+	container = document.getElementById('world');
+	container.appendChild(renderer.domElement);
+	
+	window.addEventListener('resize', handleWindowResize, false);
 }
 ```
