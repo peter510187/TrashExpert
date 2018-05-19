@@ -5,6 +5,20 @@ Trash Expert is an application that giving users a better understanding of recyc
 ## Description
 This project is using Highcharts for showing recycling data, and we created some interactive 3D games with three.js. Also, Stripe platform has been used for payment method.
 
+## Screen shots?
+#### Learn page
+<img src="screenshots/learn.JPG" width="600">
+
+#### Puzzle game
+<img src="screenshots/game1.JPG" width="600">
+<img src="screenshots/game1-2.JPG" width="600">
+
+#### Three.js 3D game
+<img src="screenshots/game2.JPG" width="600">
+
+#### Payment method
+<img src="screenshots/About.JPG" width="600">
+
 ## How it works?
 #### examples:
 ```javascript
